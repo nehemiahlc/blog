@@ -3,9 +3,9 @@ package com.codenemo.blog.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +22,9 @@ public class Category {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "category")
+    private List<Post> posts = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
