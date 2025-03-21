@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -23,30 +24,34 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain filterChain) throws ServletException, IOException {
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+
         try {
             String token = extractToken(request);
+
             if (token != null) {
                 UserDetails userDetails = authenticationService.validateToken(token);
 
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities()
-                );
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
+                        );
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
+                // Add userId to request attributes for controller access
                 if (userDetails instanceof BlogUserDetails) {
                     request.setAttribute("userId", ((BlogUserDetails) userDetails).getId());
                 }
             }
-
-
-        } catch (Exception ex) {
-            //Do not throw exceptions, just don't authenticate the user
+        } catch (Exception e) {
+            // Don't throw exceptions here - just don't authenticate the request
             log.warn("Received invalid auth token");
         }
+
         filterChain.doFilter(request, response);
     }
 

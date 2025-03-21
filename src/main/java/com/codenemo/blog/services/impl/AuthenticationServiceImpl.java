@@ -22,13 +22,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
+
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private final long jwtExpiryMs = 86400000L;
+    private final Long jwtExpiryMs = 86400000L;
 
     @Override
     public UserDetails authenticate(String email, String password) {
@@ -48,7 +49,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpiryMs))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
-
     }
 
     @Override
@@ -57,17 +57,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return userDetailsService.loadUserByUsername(username);
     }
 
-    private String extractUsername(String token){
-        Claims claims = Jwts.parserBuilder()
+    private String extractUsername(String token) {
+        return extractAllClaims(token).getSubject();
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return claims.getSubject();
     }
 
     private Key getSigningKey() {
         byte[] keyBytes = secretKey.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }

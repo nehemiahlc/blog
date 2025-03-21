@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @RequiredArgsConstructor
 public class BlogUserDetails implements UserDetails {
+
     private final User user;
 
     @Override
