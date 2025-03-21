@@ -5,9 +5,9 @@ A feature-rich blogging platform that enables writers to create, manage, and org
 
 ## 🚀 Overview
 
-This project was a **blogging platform** that provides a seamless content creation and management experience. Writers can draft, format, and publish posts while categorizing and tagging them for easy organization.
+This project is a **blogging platform** that provides a seamless content creation and management experience. Writers can draft, format, and publish posts while categorizing and tagging them for easy organization.
 
-🛠 **This project is built as part of a follow-along tutorial to learn Spring Boot and backend development.**
+🛠 **This project was built as part of a follow-along tutorial to learn Spring Boot and backend development.**
 
 ## 🎯 Features
 
