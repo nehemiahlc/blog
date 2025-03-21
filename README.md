@@ -2,6 +2,7 @@
 # 📝 Blog Platform
 
 A feature-rich blogging platform that enables writers to create, manage, and organize their content effectively.
+![Screenshot 2025-03-20 at 8 27 35 PM](https://github.com/user-attachments/assets/60f6d200-1e6b-4a11-b397-d3444a0cb98f)
 
 ## 🚀 Overview
 
