@@ -1,9 +1,9 @@
 
 # 📝 Blog Platform
 
-A feature-rich blogging platform that enables writers to create, manage, and organize their content effectively.
 ![Screenshot 2025-03-20 at 8 27 35 PM](https://github.com/user-attachments/assets/60f6d200-1e6b-4a11-b397-d3444a0cb98f)
 
+A feature-rich blogging platform that enables writers to create, manage, and organize their content effectively.
 ## 🚀 Overview
 
 This project is a **blogging platform** that provides a seamless content creation and management experience. Writers can draft, format, and publish posts while categorizing and tagging them for easy organization.
